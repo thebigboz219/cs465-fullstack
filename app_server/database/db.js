@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const host = process.env.DB_HOST || '127.0.0.1'
-const dbURI = 'mongodb://${host}/travlr';
+const dbURI = `mongodb://${host}/travlr`;
 const readLine = require('readline');
 
 // avoid 'current Server Discovery and Monitoring engine is depracated'
@@ -14,7 +14,7 @@ const connect = () => {
 }
 
 mongoose.connection.on('connected', () => {
-    console.log('Mongoose connected to ${dbURI}');
+    console.log(`Mongoose connected to ${dbURI}`);
 });
 
 mongoose.connection.on('error', err => {               
@@ -64,4 +64,4 @@ process.on('SIGTERM', () => {
 connect();
 
 // bring in the Mongoose schema
-require('./travlr');
+require('./models/travlr');
