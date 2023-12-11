@@ -75,74 +75,79 @@ const tripsAddTrip = async (req, res) => {
 
 const tripsDeleteTrip = async (req, res) => {
     console.log(req.body);
-    Trip
-        .findOneAndRemove({ 'code': req.params.tripCode }).then(trip => {
-            if (!trip) {
-                return res
-                    .status(404)
-                    .send({
-                        message: "Trip not found with code " + req.params.tripCode
-                    });
+    getUser(req, res,
+        (req, res) => {
+            Trip
+                .findOneAndRemove({ 'code': req.params.tripCode }).then(trip => {
+                    if (!trip) {
+                        return res
+                            .status(404)
+                            .send({
+                                message: "Trip not found with code " + req.params.tripCode
+                            });
+                    }
+                    res.send(trip);
+                }).catch(err => {
+                    if (err.kind === 'ObjectId') {
+                        return res
+                            .status(404)
+                            .send({
+                                message: "Trip not found with code " + req.params.tripCode
+                            });
+                    }
+                    return res
+                        .status(500) // server error
+                        .json(err);
+                });
             }
-            res.send(trip);
-        }).catch(err => {
-            if (err.kind === 'ObjectId') {
-                return res
-                    .status(404)
-                    .send({
-                        message: "Trip not found with code " + req.params.tripCode
-                    });
-            }
-            return res
-                .status(500) // server error
-                .json(err);
-        });
+    )
 }
 
 const tripsUpdateTrip = async (req, res) => {
     console.log(req.body);
     getUser(req, res,
         (req, res) => {
-    Trip
-        .findOneAndUpdate({ 'code': req.params.tripCode }, {
-            code: req.body.code,
-            name: req.body.name,
-            length: req.body.length,
-            start: req.body.start,
-            resort: req.body.resort,
-            perPerson: req.body.perPerson,
-            image: req.body.image,
-            description: req.body.description
-        }, { new: true })
-        .then(trip => {
-            if (!trip) {
-                return res
-                    .status(404)
-                    .send({
-                        message: "Trip not found with code " + req.params.tripCode
-                    });
+            Trip
+                .findOneAndUpdate({ 'code': req.params.tripCode }, {
+                    code: req.body.code,
+                    name: req.body.name,
+                    length: req.body.length,
+                    start: req.body.start,
+                    resort: req.body.resort,
+                    perPerson: req.body.perPerson,
+                    image: req.body.image,
+                    description: req.body.description
+                }, { new: true })
+                .then(trip => {
+                    if (!trip) {
+                        return res
+                            .status(404)
+                            .send({
+                                message: "Trip not found with code " + req.params.tripCode
+                            });
+                    }
+                    res.send(trip);
+                }).catch(err => {
+                    if (err.kind === 'ObjectId') {
+                        return res
+                            .status(404)
+                            .send({
+                                message: "Trip not found with code " + req.params.tripCode
+                            });
+                    }
+                    return res
+                        .status(500) // server error
+                        .json(err);
+                });
             }
-            res.send(trip);
-        }).catch(err => {
-            if (err.kind === 'ObjectId') {
-                return res
-                    .status(404)
-                    .send({
-                        message: "Trip not found with code " + req.params.tripCode
-                    });
-            }
-            return res
-                .status(500) // server error
-                .json(err);
-        });
-    }
     )
 }
 
 const getUser = (req, res, callback) => {
-    if (req.payload && req.payload.email) {
+    console.log(req.email);
+    if (req.payload && req.email) {
         User
-            .findOne({ email: req.payload.email })
+            .findOne({ email: req.email })
             .exec((err, user) => {
                 if (!user) {
                     return res
