@@ -23,4 +23,4 @@ Testing
 Reflection
 
     How has this course helped you in reaching your professional goals? What skills have you learned, developed, or mastered in this course to help you become a more marketable candidate in your career field?
-    - 
+    - This class has given me some wonderful insight into the inner workings of web applications that work through a browser. Seeing how function calls are developed to navigate users to different pages and lock in certain methods to the page. The later sections of this class then taught me how APIs are developed to access a given database (in this case MongoDB) and modify information to fit the current need. I also learned a bit about how to style a webpage for easy function access, however I do wish we got a better look into how the overall style of the page was created. With this new knowledge I hope to be a more valuable candidate for hire when I begin searching for openings in this field.
