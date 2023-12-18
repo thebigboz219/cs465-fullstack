@@ -18,7 +18,9 @@ Functionality
 Testing
 
     Methods for request and retrieval necessitate various types of API testing of endpoints, in addition to the difficulties of testing with added layers of security. Explain your understanding of methods, endpoints, and security in a full stack application.
+    - Working through this project I've come to understand endpoints as the URL necessary to initiate a certain functionality of the application. To this extent it also serves as a shortcut for users who wish to jump to this function rather than going through the various menus and workarounds a site may take you through. Once a user has reached this endpoint then the methods connected to this page are able to be called, thus initiating the specific functions of the given page. These methods can initiate simple calculations, call other methods that request access to a database, or even request navigation to a different page. Because of this we have security for access to these different endpoints and therefore their functions. Security in respect to this project was a token generated for users who had an authenticated login connected with our database. This token would be attatched to the user's browser so that it could be referenced when a navigation call was made. If the security check didn't find a valid token attatched to the user's account then they were denied access and sent back to the previous page. For other applications the methods may vary but the concepts are similar in what they are looking for. With each of these pieces you can go through and test where a program is letting users through without valid credentials and mend the issue. 
 
 Reflection
 
     How has this course helped you in reaching your professional goals? What skills have you learned, developed, or mastered in this course to help you become a more marketable candidate in your career field?
+    - 
